@@ -13,14 +13,14 @@ CREATE TABLE operator (
     nama_lengkap_operator VARCHAR(30) NOT NULL,
     peran ENUM('Admin', 'BKD') NOT NULL,
     no_telepon VARCHAR(12) NOT NULL,
-    is_active BOOLEAN DEFAULT TRUE,
+    is_active BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE jenis_pengajuan (
     kode_jenis VARCHAR(10) NOT NULL PRIMARY KEY,
     nama_jenis VARCHAR(50) NOT NULL,
     kategori_pengajuan ENUM('Kenaikan Pangkat', 'Kenaikan Gaji') NOT NULL,
-    persyaratan TEXT NOT NULL,
+    persyaratan TEXT NOT NULL
 );
 
 CREATE TABLE pengajuan (
@@ -65,5 +65,3 @@ CREATE TABLE riwayat_gaji (
     is_current BOOLEAN DEFAULT TRUE,
     FOREIGN KEY (NIP) REFERENCES pns(NIP)
 );
-
-SIKMA SIKMA BOY
