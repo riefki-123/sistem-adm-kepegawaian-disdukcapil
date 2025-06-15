@@ -98,3 +98,25 @@ INSERT INTO jenis_pengajuan (kode_jenis, nama_jenis, kategori_pengajuan, persyar
 ('KP004', 'Kenaikan Pangkat Fungsional', 'Kenaikan Pangkat', 'SK terakhir, Angka kredit, Sertifikat kompetensi'),
 ('KG003', 'Penyesuaian Gaji', 'Kenaikan Gaji', 'SK terakhir, SK pangkat terbaru, DP3'),
 ('KP005', 'Kenaikan Pangkat Anumerta', 'Kenaikan Pangkat', 'Surat Putusan, SK terakhir, Surat rekomendasi');
+
+-- Dummy data untuk tabel pengajuan (8 data)
+INSERT INTO pengajuan (NIP, kode_jenis, id_operator, tgl_pengajuan, status_pengajuan, tanggal_persetujuan, keterangan) VALUES
+('198709231001', 'KP001', 1, '2024-01-15', 'Disetujui', '2024-01-25', 'Pengajuan disetujui sesuai persyaratan'),
+('199201150002', 'KG001', 2, '2024-02-10', 'Diajukan', NULL, NULL),
+('198505070003', 'KP002', 3, '2024-01-20', 'Ditolak', '2024-01-30', 'Dokumen pendukung tidak lengkap'),
+('199012041004', 'KG002', 4, '2024-03-05', 'Disetujui', '2024-03-15', 'Pengajuan disetujui berdasarkan prestasi'),
+('198803180005', 'KP003', 1, '2024-02-28', 'Diajukan', NULL, NULL),
+('199505220006', 'KG001', 2, '2024-03-12', 'Disetujui', '2024-03-20', 'Memenuhi masa kerja'),
+('198411300007', 'KP004', 3, '2024-01-08', 'Diajukan', NULL, NULL),
+('199308250008', 'KG003', 4, '2024-02-18', 'Disetujui', '2024-02-25', 'Penyesuaian gaji telah sesuai');
+
+-- Dummy data untuk tabel dokumen_pendukung (8 data)
+INSERT INTO dokumen_pendukung (id_pengajuan, nama_dokumen, Path_file) VALUES
+(1, 'SK Pangkat Terakhir', '/documents/sk_pangkat_rina.pdf'),
+(1, 'DP3 2023', '/documents/dp3_2023_rina.pdf'),
+(2, 'SK Gaji Terakhir', '/documents/sk_gaji_doni.pdf'),
+(3, 'Ijazah S1', '/documents/ijazah_s1_siti.pdf'),
+(4, 'Surat Rekomendasi', '/documents/rekomendasi_bambang.pdf'),
+(5, 'SK Jabatan', '/documents/sk_jabatan_maya.pdf'),
+(6, 'DP3 2023', '/documents/dp3_2023_ahmad.pdf'),
+(7, 'Sertifikat Kompetensi', '/documents/sertifikat_dewi.pdf');
