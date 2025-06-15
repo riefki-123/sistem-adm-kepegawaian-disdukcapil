@@ -120,3 +120,25 @@ INSERT INTO dokumen_pendukung (id_pengajuan, nama_dokumen, Path_file) VALUES
 (5, 'SK Jabatan', '/documents/sk_jabatan_maya.pdf'),
 (6, 'DP3 2023', '/documents/dp3_2023_ahmad.pdf'),
 (7, 'Sertifikat Kompetensi', '/documents/sertifikat_dewi.pdf');
+
+-- Dummy data untuk tabel riwayat_pangkat (8 data)
+INSERT INTO riwayat_pangkat (NIP, pangkat_golongan, jabatan, tgl_mulai, sk_pangkat, is_current) VALUES
+('198709231001', 'Penata Muda Tk.I/III.b', 'Analis Kepegawaian', '2020-04-01', 'SK/001/2020', TRUE),
+('199201150002', 'Penata/III.c', 'Kepala Seksi', '2021-01-01', 'SK/002/2021', TRUE),
+('198505070003', 'Pembina/IV.a', 'Kepala Bidang', '2018-03-01', 'SK/003/2018', FALSE),
+('199012041004', 'Penata Muda/III.a', 'Staff Administrasi', '2019-08-01', 'SK/004/2019', TRUE),
+('198803180005', 'Penata Tk.I/III.d', 'Kepala Sub Bagian', '2022-06-01', 'SK/005/2022', TRUE),
+('199505220006', 'Pengatur Tk.I/II.d', 'Staff Operasional', '2023-02-01', 'SK/006/2023', TRUE),
+('198411300007', 'Pembina Tk.I/IV.b', 'Kepala Divisi', '2020-11-01', 'SK/007/2020', TRUE),
+('199308250008', 'Penata Muda Tk.I/III.b', 'Analis Data', '2021-09-01', 'SK/008/2021', TRUE);
+
+-- Dummy data untuk tabel riwayat_gaji (8 data)
+INSERT INTO riwayat_gaji (NIP, nominal_gaji, tgl_mulai, sk_gaji, is_current) VALUES
+('198709231001', 4250000.00, '2020-04-01', 'SK-GAJI/001/2020', TRUE),
+('199201150002', 4850000.00, '2021-01-01', 'SK-GAJI/002/2021', TRUE),
+('198505070003', 6200000.00, '2018-03-01', 'SK-GAJI/003/2018', FALSE),
+('199012041004', 3950000.00, '2019-08-01', 'SK-GAJI/004/2019', TRUE),
+('198803180005', 5150000.00, '2022-06-01', 'SK-GAJI/005/2022', TRUE),
+('199505220006', 3200000.00, '2023-02-01', 'SK-GAJI/006/2023', TRUE),
+('198411300007', 6850000.00, '2020-11-01', 'SK-GAJI/007/2020', TRUE),
+('199308250008', 4100000.00, '2021-09-01', 'SK-GAJI/008/2021', TRUE);
