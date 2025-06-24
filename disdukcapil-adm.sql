@@ -170,6 +170,12 @@ SET
     keterangan = 'Disetujui oleh BKD, memenuhi syarat masa kerja.'
 WHERE id_pengajuan = 2;
 
+-- Langkah 1: PNS Ahmad Fauzi membuat pengajuan baru
+INSERT INTO pengajuan (NIP, kode_jenis, id_operator, tgl_pengajuan, keterangan) 
+VALUES ('199505220006', 'KP004', 1, CURDATE(), 'Mohon diproses untuk kenaikan pangkat fungsional');
+
+-- Langkah 1: Menghapus pengajuan yang salah input (asumsikan ID-nya 9)
+DELETE FROM pengajuan WHERE id_pengajuan = 9;
 -- Langkah 2a: Nonaktifkan data gaji lama
 UPDATE riwayat_gaji SET is_current = FALSE WHERE NIP = '199201150002';
 
