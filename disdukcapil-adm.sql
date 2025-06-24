@@ -142,3 +142,21 @@ INSERT INTO riwayat_gaji (NIP, nominal_gaji, tgl_mulai, sk_gaji, is_current) VAL
 ('199505220006', 3200000.00, '2023-02-01', 'SK-GAJI/006/2023', TRUE),
 ('198411300007', 6850000.00, '2020-11-01', 'SK-GAJI/007/2020', TRUE),
 ('199308250008', 4100000.00, '2021-09-01', 'SK-GAJI/008/2021', TRUE);
+
+SELECT p.id_pengajuan, pns.nama, jp.nama_jenis, p.tgl_pengajuan, p.status_pengajuan
+FROM pengajuan p
+JOIN pns ON p.NIP = pns.NIP
+JOIN jenis_pengajuan jp ON p.kode_jenis = jp.kode_jenis
+WHERE p.status_pengajuan = 'Diajukan';
+
+SELECT p.id_pengajuan, pns.nama, jp.nama_jenis, p.tgl_pengajuan, p.status_pengajuan
+FROM pengajuan p
+JOIN pns ON p.NIP = pns.NIP
+JOIN jenis_pengajuan jp ON p.kode_jenis = jp.kode_jenis
+WHERE p.status_pengajuan = 'Diajukan';
+
+SELECT jp.nama_jenis, COUNT(p.id_pengajuan) AS jumlah_pengajuan
+FROM pengajuan p
+JOIN jenis_pengajuan jp ON p.kode_jenis = jp.kode_jenis
+GROUP BY jp.nama_jenis
+ORDER BY jumlah_pengajuan DESC;
