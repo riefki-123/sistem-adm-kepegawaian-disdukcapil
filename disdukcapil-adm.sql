@@ -160,3 +160,19 @@ FROM pengajuan p
 JOIN jenis_pengajuan jp ON p.kode_jenis = jp.kode_jenis
 GROUP BY jp.nama_jenis
 ORDER BY jumlah_pengajuan DESC;
+
+-- Langkah 1: BKD menyetujui pengajuan Doni Saputra
+UPDATE pengajuan
+SET 
+    status_pengajuan = 'Disetujui',
+    id_operator = 2, -- Diperbarui oleh Budi Santoso
+    tanggal_persetujuan = '2025-06-28',
+    keterangan = 'Disetujui oleh BKD, memenuhi syarat masa kerja.'
+WHERE id_pengajuan = 2;
+
+-- Langkah 2a: Nonaktifkan data gaji lama
+UPDATE riwayat_gaji SET is_current = FALSE WHERE NIP = '199201150002';
+
+-- Langkah 2b: Masukkan data gaji baru yang berlaku
+INSERT INTO riwayat_gaji (NIP, nominal_gaji, tgl_mulai, sk_gaji, is_current)
+VALUES ('199201150002', 5100000.00, '2025-07-01', 'SK-GAJI/009/2025', TRUE);
