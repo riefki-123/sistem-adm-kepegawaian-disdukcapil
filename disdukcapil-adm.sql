@@ -143,42 +143,35 @@ INSERT INTO riwayat_gaji (NIP, nominal_gaji, tgl_mulai, sk_gaji, is_current) VAL
 ('198411300007', 6850000.00, '2020-11-01', 'SK-GAJI/007/2020', TRUE),
 ('199308250008', 4100000.00, '2021-09-01', 'SK-GAJI/008/2021', TRUE);
 
-SELECT p.id_pengajuan, pns.nama, jp.nama_jenis, p.tgl_pengajuan, p.status_pengajuan
-FROM pengajuan p
-JOIN pns ON p.NIP = pns.NIP
-JOIN jenis_pengajuan jp ON p.kode_jenis = jp.kode_jenis
-WHERE p.status_pengajuan = 'Diajukan';
+-- Slide 1
+INSERT INTO pns (NIP, nama, no_telepon, tgl_lahir, alamat, status_asn, tgl_masuk)
+VALUES ('198412300009', 'Lebron James', '081298765499', '1984-12-30', 'Jl. LA Lakers No.23', 'Aktif', '2025-06-30');
 
-SELECT p.id_pengajuan, pns.nama, jp.nama_jenis, p.tgl_pengajuan, p.status_pengajuan
-FROM pengajuan p
-JOIN pns ON p.NIP = pns.NIP
-JOIN jenis_pengajuan jp ON p.kode_jenis = jp.kode_jenis
-WHERE p.status_pengajuan = 'Diajukan';
+-- Slide 2
+INSERT INTO pengajuan (NIP, kode_jenis, id_operator, tgl_pengajuan, status_pengajuan)
+VALUES ('198412300009', 'KP001', 1, '2025-06-30', 'Diajukan');
 
-SELECT jp.nama_jenis, COUNT(p.id_pengajuan) AS jumlah_pengajuan
-FROM pengajuan p
-JOIN jenis_pengajuan jp ON p.kode_jenis = jp.kode_jenis
-GROUP BY jp.nama_jenis
-ORDER BY jumlah_pengajuan DESC;
+-- Slide 3
+INSERT INTO dokumen_pendukung (id_pengajuan, nama_dokumen, Path_file)
+VALUES (9, 'SK Pangkat Terakhir', '/documents/sk_pangkat_lebron.pdf');
 
--- Langkah 1: BKD menyetujui pengajuan Doni Saputra
+-- Slide 4
+SELECT p.nama, j.nama_jenis, d.nama_dokumen, d.Path_file
+FROM pengajuan pg
+JOIN pns p ON pg.NIP = p.NIP
+JOIN jenis_pengajuan j ON pg.kode_jenis = j.kode_jenis
+JOIN dokumen_pendukung d ON pg.id_pengajuan = d.id_pengajuan
+WHERE pg.NIP = '198412300009';
+
+-- Slide 5
+-- Slide 6
 UPDATE pengajuan
-SET 
-    status_pengajuan = 'Disetujui',
-    id_operator = 2, -- Diperbarui oleh Budi Santoso
-    tanggal_persetujuan = '2025-06-28',
-    keterangan = 'Disetujui oleh BKD, memenuhi syarat masa kerja.'
-WHERE id_pengajuan = 2;
+SET status_pengajuan = 'Disetujui',
+    tanggal_persetujuan = CURRENT_DATE,
+    id_operator = 2
+WHERE NIP = '198412300009';
 
--- Langkah 1: PNS Ahmad Fauzi membuat pengajuan baru
-INSERT INTO pengajuan (NIP, kode_jenis, id_operator, tgl_pengajuan, keterangan) 
-VALUES ('199505220006', 'KP004', 1, CURDATE(), 'Mohon diproses untuk kenaikan pangkat fungsional');
+-- Slide 7
+INSERT INTO riwayat_pangkat (NIP, pangkat_golongan, jabatan, tgl_mulai, sk_pangkat, is_current)
+VALUES ('198412300009', 'Penata Muda/III.a', 'Analis Kepegawaian', '2025-07-01', 'SK/009/2025', TRUE);
 
--- Langkah 1: Menghapus pengajuan yang salah input (asumsikan ID-nya 9)
-DELETE FROM pengajuan WHERE id_pengajuan = 9;
--- Langkah 2a: Nonaktifkan data gaji lama
-UPDATE riwayat_gaji SET is_current = FALSE WHERE NIP = '199201150002';
-
--- Langkah 2b: Masukkan data gaji baru yang berlaku
-INSERT INTO riwayat_gaji (NIP, nominal_gaji, tgl_mulai, sk_gaji, is_current)
-VALUES ('199201150002', 5100000.00, '2025-07-01', 'SK-GAJI/009/2025', TRUE);
